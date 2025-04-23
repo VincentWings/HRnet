@@ -83,15 +83,16 @@ openModal(
 │   │   ├── Modal
 │   │   ├── Navbar
 │   │   ├── Footer
-│   │   └── EmployeeForm
+│   │   ├── EmployeeForm
+│   │   └── EmployeeTable
 │   ├── pages
 │   │   ├── CreateEmployee.jsx
-│   │   ├── EmployeeList.jsx
-│   │   └── Test.jsx
+│   │   └── EmployeeList.jsx
 │   ├── data
 │   │   ├── states.js
 │   │   └── fake_employees_100.json
 │   ├── styles
+│   │   ├── variables.js
 │   │   └── main.css
 │   └── utils
 │       └── employeeStorage.js
