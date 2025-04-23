@@ -4,7 +4,8 @@
 
 A complete modern rebuild of the HRnet application for employee management at WealthHealth. This version replaces legacy jQuery components with optimized React-based alternatives. 
 
-> [Live Demo](https://vincentwings.github.io/HRnet-React/) | [React Modal Library](https://github.com/VincentWings/React-Modal)
+> [Live Demo](https://hrnet-vincentwings.vercel.app/) | [React Modal Library](https://github.com/VincentWings/React-Modal)
+> 
 
 ---
 
