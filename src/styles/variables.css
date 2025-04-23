@@ -1,0 +1,21 @@
+:root {
+  --primary: #6a9e3f;
+  --primary-dark: #5a8d35;
+  --text-dark: #2a2a2a;
+  --label-dark: #333;
+  --bg-light: #fcfcf9;
+  --white: #ffffff;
+  --offwhite: #f9f9f9;
+  --success-bg: #e9f5e1;
+  --table-border: #ccc;
+  --fieldset-border: #ddd;
+  --table-line: #eee;
+  --overlay-bg: rgba(0, 0, 0, 0.4);
+  --modal-shadow: rgba(0, 0, 0, 0.2);
+
+  --outline-focus: #5a8d35;
+
+  --font-heading: "Poppins", sans-serif;
+  --font-text: "Open Sans", sans-serif;
+  --font-logo: "Marcellus SC", serif;
+}

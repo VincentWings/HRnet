@@ -1,0 +1,116 @@
+.navbar {
+  margin-bottom: 15px;
+  padding: 10px 20px;
+  background-color: var(--white);
+  border-bottom: 1px solid var(--border-light);
+}
+
+.navbar .container {
+  display: flex;
+  flex: none;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.navbar-logo {
+  display: flex;
+  flex: none;
+  text-decoration: none;
+  color: inherit;
+}
+
+.logo-image {
+  height: 40px;
+  margin-right: 10px;
+}
+
+.logo-text {
+  background: none;
+  color: inherit;
+  font-family: var(--font-logo);
+  font-size: 1.5rem;
+  font-weight: bold;
+  letter-spacing: 1px;
+}
+
+.navbar-links a {
+  margin-left: 20px;
+  background: none;
+  color: var(--text-dark);
+  font-family: var(--font-text);
+  font-size: inherit;
+  font-weight: 600;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.navbar-links a:hover {
+  background: none;
+  color: var(--primary);
+}
+
+.menu-toggle {
+  position: static;
+  transform: none;
+  display: none;
+  flex: none;
+  width: auto;
+  max-width: none;
+  height: auto;
+  max-height: none;
+  margin-left: auto;
+  padding: 0;
+  background: transparent;
+  color: var(--primary);
+  font-size: 1.5rem;
+  font-weight: normal;
+  text-align: left;
+  letter-spacing: normal;
+  border: none;
+  border-radius: 0;
+  outline: none;
+  cursor: pointer;
+  transition: none;
+}
+
+.menu-toggle:hover {
+  background: transparent;
+  transform: none;
+}
+
+@media (max-width: 768px) {
+  .navbar .container {
+    flex-wrap: wrap;
+  }
+
+  .navbar-links {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-height: 0;
+    margin-top: 0;
+    padding: 0;
+    background: none;
+    color: inherit;
+    font-size: inherit;
+    font-weight: inherit;
+    text-align: left;
+    letter-spacing: normal;
+    overflow: hidden;
+    transition: max-height 0.3s ease, margin-top 0.3s ease;
+  }
+
+  .navbar-links.open {
+    max-height: 200px;
+    margin-top: 1rem;
+  }
+
+  .navbar-links a {
+    margin: 0;
+    padding: 0.5rem 0;
+  }
+
+  .menu-toggle {
+    display: block;
+  }
+}

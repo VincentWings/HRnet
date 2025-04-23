@@ -1,0 +1,28 @@
+.navbar-logo {
+  display: flex;
+  flex: none;
+  text-decoration: none;
+  color: inherit;
+}
+
+.logo-image {
+  display: inline-block;
+  width: auto;
+  height: 40px;
+  margin-right: 10px;
+  padding: 2px;
+  background: none;
+  color: inherit;
+  border-radius: 40px;
+}
+
+.logo-text {
+  display: inline-block;
+  background: none;
+  color: inherit;
+  font-family: var(--font-logo);
+  font-size: 1.5rem;
+  font-weight: bold;
+  text-align: left;
+  letter-spacing: 1px;
+}

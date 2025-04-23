@@ -1,0 +1,78 @@
+.create-employee-page {
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+.employee-form {
+  display: flex;
+  flex-direction: column;
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 2rem;
+  background-color: var(--white);
+  font-size: initial;
+  font-weight: initial;
+  border-radius: 12px;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.05);
+  gap: 1.25rem;
+}
+
+.employee-form label {
+  margin-bottom: 0.25rem;
+  background-color: transparent;
+  color: var(--label-dark);
+  font-size: 0.9rem;
+  font-weight: 600;
+  text-align: initial;
+  letter-spacing: initial;
+  border: none;
+}
+
+.employee-form input,
+.employee-form select {
+  display: block;
+  width: 100%;
+  margin: 0;
+  padding: 0.6rem;
+  background-color: var(--offwhite);
+  color: initial;
+  font-size: 1rem;
+  font-weight: initial;
+  border: 1px solid var(--table-border);
+  border-radius: 6px;
+  box-sizing: border-box;
+}
+
+.employee-form fieldset {
+  margin-top: 1rem;
+  padding: 1rem;
+  background-color: transparent;
+  border: 1px solid var(--fieldset-border);
+  border-radius: 8px;
+}
+
+.employee-form legend {
+  padding: 0 0.5rem;
+  background-color: transparent;
+  color: initial;
+  font-size: 1rem;
+  font-weight: 700;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-group input,
+.form-group select {
+  margin: 0;
+}
+
+.employee-form fieldset .form-group {
+  margin-bottom: 20px;
+}
+
+.employee-form select {
+  cursor: pointer;
+}
