@@ -1,10 +1,11 @@
+// Importing React and CSS styles for the modal
 import React, { useEffect, useRef, useState } from 'react'
 import './Modal.css'
 
 /**
  * A reusable modal component with animation, accessibility support, and custom styling options.
  *
- * @param {Object} props
+ * @param {Object} props - Component properties
  * @param {boolean} props.isOpen - Whether the modal should be visible or not
  * @param {Function} props.onClose - Function to close the modal
  * @param {number} [props.fadeDuration=300] - Duration of the fade animation in ms
@@ -20,24 +21,24 @@ import './Modal.css'
  * @param {string} [props.textColor='#2a2a2a'] - Text color inside the modal
  * @param {string} [props.borderRadius='12px'] - Border-radius for modal corners
  * @param {React.ReactNode} props.children - Content to render inside the modal
+ * @returns {JSX.Element | null} The modal component
  */
-
 const Modal = ({
   isOpen,                    // Whether modal is open
   onClose,                   // Function to call on close
   fadeDuration = 300,        // ms of fade animation
-  fadeDelay = 0.5,           // multiplier delay before content animates
-  escapeClose = true,        // can close modal with Escape key
-  clickClose = true,         // can close modal by clicking overlay
-  showClose = true,          // show close "×" button in corner
-  closeText = '×',           // text/icon inside close button
-  useTransform = true,       // whether modal should slide in (translateY)
-  useBorderRadius = true,    // whether modal should have rounded corners
-  overlayColor = 'rgba(0, 0, 0, 0.4)', // background of the overlay
-  backgroundColor = '#fff',  // background of modal itself
-  textColor = '#2a2a2a',     // default text color inside modal
-  borderRadius = '12px',     // default radius for modal box
-  children                   // content of the modal
+  fadeDelay = 0.5,           // Multiplier delay before content animates
+  escapeClose = true,        // Can close modal with Escape key
+  clickClose = true,         // Can close modal by clicking overlay
+  showClose = true,          // Show close "×" button in corner
+  closeText = '×',           // Text/icon inside close button
+  useTransform = true,       // Whether modal should slide in (translateY)
+  useBorderRadius = true,    // Whether modal should have rounded corners
+  overlayColor = 'rgba(0, 0, 0, 0.4)', // Background of the overlay
+  backgroundColor = '#fff',  // Background of modal itself
+  textColor = '#2a2a2a',     // Default text color inside modal
+  borderRadius = '12px',     // Default radius for modal box
+  children                   // Content of the modal
 }) => {
   const modalRef = useRef() // Ref to modal element to trap focus
   const [visible, setVisible] = useState(false) // Track if modal should be in DOM
@@ -54,7 +55,7 @@ const Modal = ({
     }
   }, [isOpen, fadeDuration, fadeDelay, visible])
 
-  // === 2. Handle Escape + Tab key events ===
+  // === 2. Handle Escape + Tab key events for accessibility ===
   useEffect(() => {
     if (!visible || !modalRef.current) return
 
@@ -82,8 +83,8 @@ const Modal = ({
 
   /**
    * Prevent tabbing outside the modal (trap focus inside)
-   * @param {KeyboardEvent} e
-   * @param {NodeList} focusables
+   * @param {KeyboardEvent} e - The keyboard event
+   * @param {NodeList} focusables - List of focusable elements inside the modal
    */
   const handleFocusTrap = (e, focusables) => {
     const first = focusables[0]
@@ -118,7 +119,7 @@ const Modal = ({
     >
       <div
         className={`modal ${animating ? 'open' : ''}`}
-        onClick={(e) => e.stopPropagation()} // prevent close on modal content click
+        onClick={(e) => e.stopPropagation()} // Prevent close on modal content click
         ref={modalRef}
         style={{
           transition: `opacity ${fadeDuration}ms, transform ${fadeDuration}ms`,
@@ -129,12 +130,14 @@ const Modal = ({
           borderRadius: useBorderRadius ? borderRadius : '0'
         }}
       >
+        {/* Optional close button in top-right corner */}
         {showClose && (
-          <button className="modal-close" onClick={onClose}>
+          <button className="modal-close" onClick={onClose} aria-label="Close modal">
             {closeText}
           </button>
         )}
 
+        {/* Modal content area */}
         <div className="modal-content">
           {children}
         </div>
@@ -143,4 +146,5 @@ const Modal = ({
   )
 }
 
+// Exporting the Modal component for use in other parts of the application
 export default Modal

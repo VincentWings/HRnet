@@ -7,11 +7,17 @@ import './Navbar.css'
 import Logo from './Logo'
 
 /**
- * Main navigation bar component
- * Displays the logo and a responsive navigation menu
+ * Navbar Component
+ * Displays the main navigation bar with the company logo and responsive navigation menu.
+ * - Supports a mobile-friendly menu that toggles open/closed.
+ * - Includes links to "Create Employee" and "Employee List".
+ *
+ * @component
+ * @returns {JSX.Element} The Navbar component with responsive navigation.
  */
 function Navbar() {
-  const [isMenuOpen, setIsMenuOpen] = useState(false) // Toggle state for showing/hiding the mobile menu
+  // Toggle state for showing/hiding the mobile menu
+  const [isMenuOpen, setIsMenuOpen] = useState(false)
 
   /**
    * Toggles the mobile menu visibility
@@ -23,21 +29,21 @@ function Navbar() {
   return (
     <nav className="navbar">
       <div className="container">
-        {/* Company logo */}
+        {/* Company logo with link to homepage */}
         <Logo />
 
-        {/* Hamburger menu button (mobile) */}
+        {/* Hamburger menu button (visible on mobile) */}
         <button
           className="menu-toggle"
-          onClick={toggleMenu}
-          aria-label="Toggle menu"
-          aria-expanded={isMenuOpen}
+          onClick={toggleMenu}          // Toggles menu visibility
+          aria-label="Toggle menu"      // Accessibility label for screen readers
+          aria-expanded={isMenuOpen}    // Reflects menu open/closed state for accessibility
         >
-          {/* Icon changes depending on menu state */}
+          {/* Icon changes depending on menu state (✕ for close, ☰ for open) */}
           {isMenuOpen ? '✕' : '☰'}
         </button>
 
-        {/* Navigation links. The menu will expand/collapse on mobile based on isMenuOpen */}
+        {/* Navigation links, shown/hidden based on isMenuOpen */}
         <div className={`navbar-links ${isMenuOpen ? 'open' : ''}`}>
           {/* Link to the Create Employee form */}
           <Link to="/" onClick={() => setIsMenuOpen(false)}>
@@ -54,4 +60,5 @@ function Navbar() {
   )
 }
 
+// Exporting the Navbar component for use in other parts of the application
 export default Navbar

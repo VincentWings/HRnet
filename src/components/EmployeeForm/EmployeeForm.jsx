@@ -5,13 +5,15 @@ import AddressFields from './AddressFields'
 import './EmployeeForm.css'
 
 /**
- * EmployeeForm component
- * Renders a reusable form section to collect employee personal and department data
+ * EmployeeForm Component
+ * Renders a reusable form section to collect employee personal and department data.
+ * - Includes fields for first name, last name, date of birth, start date, address, and department.
+ * - Uses the AddressFields component for a modular address section.
  *
- * @param {Object} props
- * @param {Object} props.formData - Current values for each form input field
- * @param {Function} props.handleChange - Handler function to update form state on input change
- * @returns {JSX.Element} A collection of input fields for creating or editing an employee
+ * @param {Object} props - Component properties.
+ * @param {Object} props.formData - Current values for each form input field.
+ * @param {Function} props.handleChange - Handler function to update form state on input change.
+ * @returns {JSX.Element} A collection of input fields for creating or editing an employee.
  */
 function EmployeeForm({ formData, handleChange }) {
   return (
@@ -76,6 +78,7 @@ function EmployeeForm({ formData, handleChange }) {
           onChange={handleChange}
           required
         >
+          {/* Default department options */}
           <option value="Sales">Sales</option>
           <option value="Marketing">Marketing</option>
           <option value="Engineering">Engineering</option>
@@ -87,4 +90,5 @@ function EmployeeForm({ formData, handleChange }) {
   )
 }
 
+// Exporting the EmployeeForm component for use in other parts of the application
 export default EmployeeForm

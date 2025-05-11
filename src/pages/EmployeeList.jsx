@@ -1,50 +1,44 @@
 // Import required hooks and components
-import { useEffect, useState } from 'react'
-import { getEmployeesFromStorage } from '../utils/employeeStorage'
+import { useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { loadFakeEmployees } from '../redux/employeeSlice'
 import EmployeeTable from '../components/EmployeeTable/EmployeeTable'
 
-// Optional mock data for testing purposes
-import fakeEmployees from '../data/fake_employees_100.json'
-
 /**
- * Displays the list of current employees
- * Fetches data from local storage and optionally merges fake employees
+ * EmployeeList Component
+ * Displays the list of current employees.
+ * - Loads fake employees once when the component mounts.
+ * - Displays a table of employees or a message if no employees are available.
+ *
+ * @returns {JSX.Element} The EmployeeList component displaying a list of employees.
  */
 function EmployeeList() {
-  // State to store all employees to be displayed
-  const [employees, setEmployees] = useState([])
+  const dispatch = useDispatch()
 
-  // Run only once on mount to fetch stored employees
+  // Load fake employees only once on component mount
   useEffect(() => {
-    const storedEmployees = getEmployeesFromStorage()
+    dispatch(loadFakeEmployees())
+  }, [dispatch])
 
-    /**
-     * To test with demo/fake employees:
-     * - Merge real stored data with the fake employee list
-     * - You can comment/uncomment the line below depending on your needs
-     */
-    const combined = [...storedEmployees, ...fakeEmployees]
-
-    // Use this for testing with fake data
-    setEmployees(combined)
-
-    // Use this to load only real stored data
-    // setEmployees(storedEmployees)
-  }, [])
+  // Accessing the list of employees from the Redux store
+  const employees = useSelector((state) => state.employee.employees)
 
   return (
     <div className='container'>
       <h2>Current Employees</h2>
 
-      {/* Show message if no employees found */}
+      {/* Conditional rendering:
+          - If no employees found, display a message.
+          - Otherwise, render the EmployeeTable component. */}
       {employees.length === 0 ? (
         <p>No employees found.</p>
       ) : (
-        // Render the employee table component
+        // Render the EmployeeTable component with the list of employees
         <EmployeeTable employees={employees} />
       )}
     </div>
   )
 }
 
+// Exporting the EmployeeList component for use in the application
 export default EmployeeList

@@ -1,10 +1,17 @@
+// Importing necessary hooks and components
 import { useState } from 'react'
 import PaginationControls from './PaginationControls'
 import './EmployeeTable.css'
 
 /**
- * Displays a paginated, searchable, and sortable table of employees
- * @param {Object[]} employees - List of employee objects to display
+ * EmployeeTable Component
+ * Displays a paginated, searchable, and sortable table of employees.
+ * - Allows users to search across all fields.
+ * - Supports sorting by column headers.
+ * - Includes pagination controls for easier navigation.
+ *
+ * @param {Object[]} employees - List of employee objects to display.
+ * @returns {JSX.Element} The EmployeeTable component.
  */
 function EmployeeTable({ employees }) {
   // Number of entries shown per page
@@ -19,13 +26,21 @@ function EmployeeTable({ employees }) {
   // Current search string for filtering employees
   const [searchTerm, setSearchTerm] = useState('')
 
-  // Called when user changes entries per page
+  /**
+   * Handles changes in the entries per page dropdown.
+   * Resets to page 1 when changing the number of entries.
+   */
   const handleEntriesChange = (e) => {
     setEntriesPerPage(Number(e.target.value))
     setCurrentPage(1)
   }
 
-  // Called when user clicks a column header to sort
+  /**
+   * Handles sorting when clicking on a column header.
+   * Toggles between ascending and descending order.
+   * 
+   * @param {string} key - The column key to sort by.
+   */
   const handleSort = (key) => {
     let direction = 'asc'
     if (sortConfig.key === key && sortConfig.direction === 'asc') {
@@ -34,18 +49,21 @@ function EmployeeTable({ employees }) {
     setSortConfig({ key, direction })
   }
 
-  // Called when user types into the search bar
+  /**
+   * Handles search input change.
+   * Filters employees based on the search term.
+   */
   const handleSearchChange = (e) => {
     setSearchTerm(e.target.value.toLowerCase())
     setCurrentPage(1)
   }
 
-  // Filters employees based on searchTerm
-  const filteredEmployees = employees.filter((emp) => {
-    return Object.values(emp).some((val) =>
+  // Filters employees based on searchTerm (case-insensitive)
+  const filteredEmployees = employees.filter((emp) =>
+    Object.values(emp).some((val) =>
       String(val).toLowerCase().includes(searchTerm)
     )
-  })
+  )
 
   // Pagination calculations
   const totalEntries = filteredEmployees.length
@@ -70,9 +88,10 @@ function EmployeeTable({ employees }) {
   })
 
   /**
-   * Returns class name for a column header to style active sorting
-   * @param {string} key - Column key being sorted
-   * @returns {string}
+   * Returns the class name for a column header to style active sorting.
+   * 
+   * @param {string} key - Column key being sorted.
+   * @returns {string} - Class name for the header.
    */
   const getThClass = (key) => {
     const base = 'sortable'
@@ -97,7 +116,7 @@ function EmployeeTable({ employees }) {
           entries
         </label>
 
-        {/* Search input */}
+        {/* Search input for filtering employees */}
         <input
           type="text"
           placeholder="Search all fields..."
@@ -112,33 +131,17 @@ function EmployeeTable({ employees }) {
           <thead>
             <tr>
               {/* Each column header is sortable and accessible */}
-              <th onClick={() => handleSort('firstName')} className={getThClass('firstName')} scope="col" aria-sort={sortConfig.key === 'firstName' ? sortConfig.direction : 'none'}>
-                First Name
-              </th>
-              <th onClick={() => handleSort('lastName')} className={getThClass('lastName')} scope="col" aria-sort={sortConfig.key === 'lastName' ? sortConfig.direction : 'none'}>
-                Last Name
-              </th>
-              <th onClick={() => handleSort('startDate')} className={getThClass('startDate')} scope="col" aria-sort={sortConfig.key === 'startDate' ? sortConfig.direction : 'none'}>
-                Start Date
-              </th>
-              <th onClick={() => handleSort('department')} className={getThClass('department')} scope="col" aria-sort={sortConfig.key === 'department' ? sortConfig.direction : 'none'}>
-                Department
-              </th>
-              <th onClick={() => handleSort('dateOfBirth')} className={getThClass('dateOfBirth')} scope="col" aria-sort={sortConfig.key === 'dateOfBirth' ? sortConfig.direction : 'none'}>
-                Date of Birth
-              </th>
-              <th onClick={() => handleSort('street')} className={getThClass('street')} scope="col" aria-sort={sortConfig.key === 'street' ? sortConfig.direction : 'none'}>
-                Street
-              </th>
-              <th onClick={() => handleSort('city')} className={getThClass('city')} scope="col" aria-sort={sortConfig.key === 'city' ? sortConfig.direction : 'none'}>
-                City
-              </th>
-              <th onClick={() => handleSort('state')} className={getThClass('state')} scope="col" aria-sort={sortConfig.key === 'state' ? sortConfig.direction : 'none'}>
-                State
-              </th>
-              <th onClick={() => handleSort('zipCode')} className={getThClass('zipCode')} scope="col" aria-sort={sortConfig.key === 'zipCode' ? sortConfig.direction : 'none'}>
-                Zip Code
-              </th>
+              {['firstName', 'lastName', 'startDate', 'department', 'dateOfBirth', 'street', 'city', 'state', 'zipCode'].map((col) => (
+                <th
+                  key={col}
+                  onClick={() => handleSort(col)}
+                  className={getThClass(col)}
+                  scope="col"
+                  aria-sort={sortConfig.key === col ? sortConfig.direction : 'none'}
+                >
+                  {col.charAt(0).toUpperCase() + col.slice(1).replace(/([A-Z])/g, ' $1')}
+                </th>
+              ))}
             </tr>
           </thead>
           <tbody>
@@ -174,4 +177,5 @@ function EmployeeTable({ employees }) {
   )
 }
 
+// Exporting the EmployeeTable component for use in the application
 export default EmployeeTable
