@@ -20,7 +20,7 @@ import Footer from './components/Footer/Footer'
  */
 function AppRouter() {
   return (
-    <Router>
+    <Router basename="/">
       {/* Navbar component displayed at the top of the page */}
       <Navbar />
 
